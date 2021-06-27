@@ -1,0 +1,26 @@
+{
+  "name": "my-simple-nodejs-api",
+  "version": "1.0.0",
+  "description": "A simple API",
+  "main": "index.js",
+  "repository": "git@github.com:marcelomansur/my-simple-nodejs-api.git",
+  "author": "Marcelo Dellacroce Mansur <mansur.ufmg@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev src/server.ts",
+    "typeorm": "ts-node-dev $(yarn bin typeorm)"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.12",
+    "@types/uuid": "^8.3.0",
+    "ts-node-dev": "^1.1.6",
+    "typescript": "^4.3.4"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "reflect-metadata": "^0.1.13",
+    "sqlite3": "^5.0.2",
+    "typeorm": "^0.2.34",
+    "uuid": "^8.3.2"
+  }
+}
