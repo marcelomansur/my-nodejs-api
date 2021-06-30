@@ -9,6 +9,7 @@ import ensureAdmin from "./middlewares/ensureAdmin";
 import ensureAuthenticated from "./middlewares/ensureAuthenticate";
 import { ListTagsController } from "./controllers/ListTagsController";
 import { ListUsersController } from "./controllers/ListUsersController";
+import { DeleteUserController } from "./controllers/DeleteUserController";
 
 const router = Router();
 
@@ -24,6 +25,7 @@ const listComplimentsReceiverController =
   new ListComplimentsReceiverController();
 const listTagsController = new ListTagsController();
 const listUsersController = new ListUsersController();
+const deleteUserController = new DeleteUserController();
 
 /**
  * routes
@@ -31,6 +33,12 @@ const listUsersController = new ListUsersController();
 router.post("/login", authenticateUserController.handle);
 router.get("/users", ensureAuthenticated, listUsersController.handle);
 router.post("/users", createUserController.handle);
+router.delete(
+  "/user/:id",
+  ensureAuthenticated,
+  ensureAdmin,
+  deleteUserController.handle
+);
 router.get("/tags", ensureAuthenticated, listTagsController.handle);
 router.post(
   "/tags",
