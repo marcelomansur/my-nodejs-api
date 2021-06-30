@@ -12,6 +12,9 @@ import { ListUsersController } from "./controllers/ListUsersController";
 
 const router = Router();
 
+/**
+ * controllers
+ */
 const authenticateUserController = new AuthenticateUserController();
 const createUserController = new CreateUserController();
 const createTagController = new CreateTagController();
@@ -22,6 +25,9 @@ const listComplimentsReceiverController =
 const listTagsController = new ListTagsController();
 const listUsersController = new ListUsersController();
 
+/**
+ * routes
+ */
 router.post("/login", authenticateUserController.handle);
 router.get("/users", ensureAuthenticated, listUsersController.handle);
 router.post("/users", createUserController.handle);
