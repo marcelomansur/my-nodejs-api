@@ -8,7 +8,7 @@ import "express-async-errors";
 import "reflect-metadata";
 
 import "./database";
-import { router } from "./routes";
+import { loginRouter, userRouter, tagRouter, complimentRouter } from "./routes";
 import errorsMiddleware from "./middlewares/errorsMiddleware";
 import swaggerDocument from "./docs/swagger.json";
 const app = express();
@@ -26,7 +26,10 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 /**
  * routes
  */
-app.use(router);
+app.use(loginRouter);
+app.use(userRouter);
+app.use(tagRouter);
+app.use(complimentRouter);
 
 /**
  * error middleware
