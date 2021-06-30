@@ -9,12 +9,14 @@
 
 ###### What can I do?
 
-This API example provides a complete CRUD for a user. Here are a few examples to get you started:
+This API example provides a complete CRUD for a User. Here are a few examples to get you started:
 
+- Login a User
 - List all Users.
 - Create a User.
 - Update a User.
 - Delete a User.
+
 
 ## Getting Started
 
@@ -46,6 +48,18 @@ The API will be exposed at localhost on port 3000:
 ➜ curl http://localhost:3000
 Hello API
 ```
+
+### Routes
+
+The API routes are avaiable on a Swagger UI at:
+
+```url
+http://localhost:3000/api-docs/
+``` 
+
+![Image](./images/api-docs.png)
+
+
 
 ### Features
 
