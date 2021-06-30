@@ -79,5 +79,9 @@ router.get(
   ensureAuthenticated,
   listComplimentsReceiverController.handle
 );
+/* root route */
+router.get("/", (req, res) => {
+  res.send("Hello API");
+});
 
 export { router };
