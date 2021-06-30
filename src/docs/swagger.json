@@ -13,7 +13,48 @@
     }
   ],
   "paths": {
-     "/users": {
+    "/login": {
+      "post": {
+        "description": "Login",
+        "tags": ["Login"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              },
+              "examples": {
+                "admin user" :{
+                  "value" :{
+                    "email": "admin@example.com",
+                    "password": "12345"
+                  }
+                },
+                "common user" :{
+                  "value" :{
+                    "email": "common@example.com",
+                    "password": "12345"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/responses/Token"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users": {
       "post": {
         "description": "Create a user",
         "tags": ["Users"],
@@ -29,7 +70,7 @@
                     "name": "administrator",
                     "email": "admin@example.com",
                     "password": "12345",
-                    "admin": "true"
+                    "admin": true
                   }
                 },
                 "common user" :{
@@ -37,7 +78,7 @@
                     "name": "common",
                     "email": "common@example.com",
                     "password": "12345",
-                    "admin": "false"
+                    "admin": false
                   }
                 }
               }
@@ -77,11 +118,100 @@
           }
         }
       }
+    },
+    "/user/{id}": {
+      "put": {
+        "description": "Update a user",
+        "tags": ["Users"],
+        "security": [{ "bearerAuth": []}],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of user to update",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "examples": {
+                "admin user" :{
+                  "value" :{
+                    "name": "administratorUpdated",
+                    "email": "admin@example.com",
+                    "password": "12345updated",
+                    "admin": true
+                  }
+                },
+                "common user" :{
+                  "value" :{
+                    "name": "commonWithAdmin",
+                    "email": "common@example.com",
+                    "password": "12345",
+                    "admin": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/responses/User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete a user",
+        "tags": ["Users"],
+        "security": [{ "bearerAuth": []}],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of user to delete",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/responses/User"
+                }
+              }
+            }
+          }
+        }
+      }
     }
-
   },
   "components": {
     "schemas": {
+      "Login": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
       "User": {
         "type": "object",
         "properties": {
@@ -105,7 +235,7 @@
         "type": "object",
         "properties":{
           "id": {
-            "type": "uuid"
+            "type": "string"
           },
           "name": {
             "type": "string"
@@ -120,12 +250,15 @@
             "type": "boolean"
           },
           "created_at": {
-            "type": "date"
+            "type": "string"
           },
           "updated_at": {
-            "type": "date"
+            "type": "string"
           }
         }
+      },
+      "Token":{
+        "type": "string"
       }
     },
     "securitySchemes": {
