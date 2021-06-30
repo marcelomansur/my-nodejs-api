@@ -1,4 +1,6 @@
-# my-simple-nodejs-api
+# my-nodejs-api
+
+A Nodejs API.
 
 ## Requirements
 
