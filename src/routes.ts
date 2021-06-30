@@ -17,22 +17,30 @@ const router = Router();
 /**
  * controllers
  */
+
+/* login */
 const authenticateUserController = new AuthenticateUserController();
+/* users */
+const listUsersController = new ListUsersController();
 const createUserController = new CreateUserController();
+const updateUserController = new UpdateUserController();
+const deleteUserController = new DeleteUserController();
+/* tags */
 const createTagController = new CreateTagController();
+const listTagsController = new ListTagsController();
+/* compliments */
 const createComplimentController = new CreateComplimentController();
 const listComplimentsSenderController = new ListComplimentsSenderController();
 const listComplimentsReceiverController =
   new ListComplimentsReceiverController();
-const listTagsController = new ListTagsController();
-const listUsersController = new ListUsersController();
-const deleteUserController = new DeleteUserController();
-const updateUserController = new UpdateUserController();
 
 /**
  * routes
  */
+
+/* login */
 router.post("/login", authenticateUserController.handle);
+/* users */
 router.get("/users", ensureAuthenticated, listUsersController.handle);
 router.post("/users", createUserController.handle);
 router.put(
@@ -47,6 +55,7 @@ router.delete(
   ensureAdmin,
   deleteUserController.handle
 );
+/* tags */
 router.get("/tags", ensureAuthenticated, listTagsController.handle);
 router.post(
   "/tags",
@@ -54,6 +63,7 @@ router.post(
   ensureAdmin,
   createTagController.handle
 );
+/* compliments */
 router.post(
   "/compliments",
   ensureAuthenticated,
