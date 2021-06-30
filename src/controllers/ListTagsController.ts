@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import { ListTagsService } from "../services/ListTagsService";
 
 class ListTagsController {
