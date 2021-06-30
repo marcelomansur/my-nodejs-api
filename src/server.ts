@@ -3,8 +3,9 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import swaggerUi from "swagger-ui-express";
-import "reflect-metadata";
 import "express-async-errors";
+/* typeorm dependency */
+import "reflect-metadata";
 
 import "./database";
 import { router } from "./routes";
