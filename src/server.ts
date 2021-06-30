@@ -1,5 +1,6 @@
-import express, { Request, Response, NextFunction, response } from "express";
+import express from "express";
 import helmet from "helmet";
+import morgan from "morgan";
 import "reflect-metadata";
 import "express-async-errors";
 
@@ -13,6 +14,11 @@ const app = express();
  */
 app.use(helmet());
 app.use(express.json());
+app.use(morgan("dev"));
+
+/**
+ * routes
+ */
 app.use(router);
 
 /**
