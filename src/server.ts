@@ -1,28 +1,23 @@
-import "reflect-metadata";
 import express, { Request, Response, NextFunction, response } from "express";
+import helmet from "helmet";
+import "reflect-metadata";
 import "express-async-errors";
 
 import { router } from "./routes";
 import "./database";
-
+import errorsMiddleware from "./middlewares/errorsMiddleware";
 const app = express();
 
+/**
+ * middlewares
+ */
+app.use(helmet());
 app.use(express.json());
 app.use(router);
 
-app.use(
-  (err: Error, request: Request, response: Response, next: NextFunction) => {
-    if (err instanceof Error) {
-      return response.status(400).json({
-        error: err.message,
-      });
-    }
-
-    return response.status(500).json({
-      status: "error",
-      message: "Internal Server Error",
-    });
-  }
-);
+/**
+ * error middleware
+ */
+app.use(errorsMiddleware);
 
 app.listen(3000, () => console.log("Server is running on port 3000"));
