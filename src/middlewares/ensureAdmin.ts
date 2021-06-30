@@ -20,7 +20,7 @@ async function ensureAdmin(
   }
 
   return response.status(401).json({
-    error: "Unauthorized. Only admin user can create tags.",
+    error: "Unauthorized. Only admin user can do it.",
   });
 }
 
