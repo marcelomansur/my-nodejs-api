@@ -7,12 +7,14 @@
   "author": "Marcelo Dellacroce Mansur <mansur.ufmg@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "start": "NODE_ENV=prod ts-node src/server.ts",
     "dev": "ts-node-dev src/server.ts",
     "typeorm": "ts-node-dev $(yarn bin typeorm)"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
     "@types/cors": "^2.8.10",
+    "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.12",
     "@types/helmet": "^4.0.0",
     "@types/jsonwebtoken": "^8.5.2",
@@ -26,6 +28,7 @@
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.4.0",
     "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "helmet": "^4.6.0",
@@ -34,6 +37,7 @@
     "reflect-metadata": "^0.1.13",
     "sqlite3": "^5.0.2",
     "swagger-ui-express": "^4.1.6",
+    "ts-node": "^10.0.0",
     "typeorm": "^0.2.34",
     "uuid": "^8.3.2"
   }

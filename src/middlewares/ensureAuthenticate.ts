@@ -17,9 +17,10 @@ function ensureAuthenticated(
   }
 
   const [, token] = authHeader.split(" ");
+  const secret = process.env.PORT || "dummysecret";
 
   try {
-    var { sub } = verify(token, "chavesecreta") as IPayload;
+    const { sub } = verify(token, secret) as IPayload;
 
     request.user_id = sub;
 

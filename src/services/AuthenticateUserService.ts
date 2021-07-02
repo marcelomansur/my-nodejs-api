@@ -27,11 +27,13 @@ class AuthenticateUserService {
       throw new Error("Email/password is incorrect!");
     }
 
+    const secret = process.env.PORT || "dummysecret";
+
     const token = sign(
       {
         email: user.email,
       },
-      "chavesecreta",
+      secret,
       {
         subject: user.id,
         expiresIn: "1d",

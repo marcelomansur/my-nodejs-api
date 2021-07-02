@@ -1,39 +1,9 @@
-import express from "express";
-import cors from "cors";
-import helmet from "helmet";
-import morgan from "morgan";
-import swaggerUi from "swagger-ui-express";
-import "express-async-errors";
-/* typeorm dependency */
-import "reflect-metadata";
+import "./config/environment";
+import { app } from "./app";
 
-import "./database";
-import { loginRouter, userRouter, tagRouter, complimentRouter } from "./routes";
-import errorsMiddleware from "./middlewares/errorsMiddleware";
-import swaggerDocument from "./docs/swagger.json";
-const app = express();
+const nodePort = process.env.PORT || 3000;
+console.log(nodePort);
 
-/**
- * middlewares
- */
-app.use(cors());
-app.use(helmet());
-app.use(express.json());
-app.use(morgan("dev"));
-
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
-/**
- * routes
- */
-app.use(loginRouter);
-app.use(userRouter);
-app.use(tagRouter);
-app.use(complimentRouter);
-
-/**
- * error middleware
- */
-app.use(errorsMiddleware);
-
-app.listen(3000, () => console.log("Server is running on port 3000"));
+app.listen(nodePort, () =>
+  console.log(`Server is running on port ${nodePort}`)
+);
